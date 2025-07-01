@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業カウンター</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .add-category {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .add-category input {
+            width: calc(100% - 80px);
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .add-category button {
+            width: 70px;
+            padding: 8px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .add-category button:hover {
+            background: #45a049;
+        }
+        
+        .categories {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .category-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .count-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .count-display {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .count-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .count-btn.increment {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .count-btn.decrement {
+            background: #f44336;
+            color: white;
+        }
+        
+        .count-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .count-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .history-section {
+            margin-top: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .history-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .floating-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .floating-counter:hover {
+            transform: scale(1.1);
+            background: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 作業カウンター</h1>
+        
+        <div class="add-category">
+            <input type="text" id="categoryInput" placeholder="新しいカテゴリ名を入力">
+            <button onclick="addCategory()">追加</button>
+        </div>
+        
+        <div class="categories" id="categoriesContainer">
+            <!-- カテゴリアイテムはJavaScriptで動的に生成 -->
+        </div>
+        
+        <div class="history-section">
+            <div class="history-title">📊 今日の記録</div>
+            <div id="todayHistory">
+                <!-- 今日の履歴はJavaScriptで動的に生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <button class="floating-counter" onclick="toggleQuickCount()">+</button>
+    
+    <script src="renderer.js"></script>
+</body>
+</html>
